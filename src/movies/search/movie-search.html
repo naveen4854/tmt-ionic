@@ -17,18 +17,6 @@
         </ion-item>
 
         <ion-item>
-            <ion-label>Gaming</ion-label>
-            <ion-select [(ngModel)]="gaming" interface="popover">
-                <ion-option value="nes">NES</ion-option>
-                <ion-option value="n64">Nintendo64</ion-option>
-                <ion-option value="ps">PlayStation</ion-option>
-                <ion-option value="genesis">Sega Genesis</ion-option>
-                <ion-option value="saturn">Sega Saturn</ion-option>
-                <ion-option value="snes">SNES</ion-option>
-            </ion-select>
-        </ion-item>
-
-        <ion-item>
             <ion-label>Notifications</ion-label>
             <ion-select [(ngModel)]="notifications" interface="action-sheet">
                 <ion-option value="enable">Enable</ion-option>
@@ -48,19 +36,6 @@
                 <ion-option value="win3.1">Windows 3.1</ion-option>
                 <ion-option value="win95">Windows 95</ion-option>
                 <ion-option value="win98">Windows 98</ion-option>
-            </ion-select>
-        </ion-item>
-
-        <ion-item>
-            <ion-label>Music</ion-label>
-            <ion-select [(ngModel)]="music" [selectOptions]="musicAlertOpts">
-                <ion-option>Alice in Chains</ion-option>
-                <ion-option>Green Day</ion-option>
-                <ion-option>Nirvana</ion-option>
-                <ion-option>Pearl Jam</ion-option>
-                <ion-option>Smashing Pumpkins</ion-option>
-                <ion-option>Soundgarden</ion-option>
-                <ion-option (select)="stpSelect()">Stone Temple Pilots</ion-option>
             </ion-select>
         </ion-item>
 
