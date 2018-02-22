@@ -1,3 +1,4 @@
+import { MovieService } from './service/movies.service';
 import { MovieSearch } from './search/movie-search';
 import { MoviePost } from './post/movie-post';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -25,7 +26,8 @@ import { MovieTabs } from './tabs/movie-tabs';
     ],
     providers: [
         StatusBar,
-        SplashScreen
+        SplashScreen,
+        MovieService
     ]
 })
 export class MovieModule { }

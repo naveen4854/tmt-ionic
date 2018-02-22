@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -11,6 +11,18 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MovieModule } from '../movies/movie.module';
+import { Config } from '../shared/utilities/config';
+import { GlobalEventsManager } from '../shared/utilities/global-events-manager';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpUtility } from '../shared/utilities/http/http-utility.service';
+
+export function moduleResolveFactory(config: Config) {
+  return () => config.load();
+}
+
+export function moduleResolveFactoryGem(globalEvents: GlobalEventsManager) {
+  return () => globalEvents;
+}
 
 @NgModule({
   declarations: [
@@ -23,6 +35,7 @@ import { MovieModule } from '../movies/movie.module';
   imports: [
     BrowserModule,
     MovieModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -36,6 +49,15 @@ import { MovieModule } from '../movies/movie.module';
   providers: [
     StatusBar,
     SplashScreen,
+    Config,
+    GlobalEventsManager,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: moduleResolveFactory,
+      deps: [Config],
+      multi: true
+    },
+    HttpUtility,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
